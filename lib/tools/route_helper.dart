@@ -1,6 +1,5 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:path/path.dart';
 
 class RouteHelper  {
   static const String splash = '/splash';

@@ -1,11 +1,9 @@
 
-import 'dart:io';
 import 'dart:async';
 import 'package:daily_reminder/pages/init_pages.dart';
 import 'package:flutter/material.dart';
 
 
-import 'database/db_tools.dart';
 
 Future<void> main() async {
   // 初始化数据库
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:InitPage()
+      home:const InitPage()
     );
   }
 }
