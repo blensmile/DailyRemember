@@ -39,7 +39,7 @@ class RouteHelper  {
   }
 
   void pop(BuildContext context) {
-    Navigator.pop(context);
+    Navigator.of(context).pop();
   }
 
 }
