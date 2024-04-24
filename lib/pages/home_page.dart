@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         bottomNavigationBar:Container(
             child: TabBar(
                 controller: _tabController,
-                indicator: UnderlineTabIndicator(),
+                indicator: const UnderlineTabIndicator(),
                 tabs: const [
                   Tab(text: "Home",icon: Icon(Icons.home),iconMargin: EdgeInsets.all(1),),
                   Tab(text: "Mine",icon: Icon(Icons.account_box_outlined),iconMargin: EdgeInsets.all(1),),
@@ -75,30 +75,30 @@ class _MyHomePageState extends State<MyHomePage> {
           Offset offset = button.localToGlobal(Offset.zero);
 
           // 显示弹出菜单
-          _showPopupMenu(offset);
+          _showPopupMenu(context,offset);
         },
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  void _showPopupMenu(Offset offset) {
+  void _showPopupMenu(BuildContext context, Offset offset) {
     showMenu(
       context: context,
       position: RelativeRect.fromLTRB(offset.dx, offset.dy, offset.dx, offset.dy),
       items: [
         PopupMenuItem(
-          child: Icon(Icons.book_outlined),
+          child: const Icon(Icons.book_outlined),
           onTap: () {
-            RouteHelper.instance.routeWithAnimation(context, CreateCardPage());
+            RouteHelper.instance.routeWithAnimation(context, const CreateCardPage());
           },
         ),
         PopupMenuItem(
-          child:  Icon(Icons.wordpress),
+          child:  const Icon(Icons.wordpress),
           onTap: () {
-            RouteHelper.instance.routeWithAnimation(context, CreateCardPage());
+            RouteHelper.instance.routeWithAnimation(context, const CreateCardPage());
           },
         ),
       ],

@@ -1,7 +1,6 @@
 
 //弹出带确认和取消信息的弹窗
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
  class Dialogs{
 
@@ -17,16 +16,16 @@ import 'package:flutter/widgets.dart';
           content: Text(content),
           actions: [
             cancelText==null?Container(): TextButton(
-              child: Text("取消"),
+              child: const Text("取消"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("确定"),
               onPressed: onConfirm??() {
                 Navigator.of(context).pop();
               },
+              child: const Text("确定"),
             ),
           ],
         );

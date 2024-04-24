@@ -1,13 +1,11 @@
 
 import 'package:daily_reminder/tools/route_helper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../views/dialogs.dart';
 
 class CreatBookPage extends StatefulWidget {
-  const CreatBookPage({Key? key}) : super(key: key);
+  const CreatBookPage({super.key});
   @override
   State<CreatBookPage> createState() => _CreatBookPageState();
 }
@@ -25,7 +23,7 @@ class _CreatBookPageState extends State<CreatBookPage> {
           appBar: AppBar(
               title: const Text("Create Book"),
               leading: IconButton(
-                icon: Icon(Icons.arrow_back,size: 12,),
+                icon: const Icon(Icons.arrow_back,size: 12,),
                 onPressed: (){
                   if(isEdited){
                     Dialogs.showConfirmDialog(context, "未保存, 是否直接退出?",onConfirm: (){
@@ -47,7 +45,7 @@ class _CreatBookPageState extends State<CreatBookPage> {
 }
 
 class CreateCardPage extends StatefulWidget {
-  const CreateCardPage({Key? key}) : super(key: key);
+  const CreateCardPage({super.key});
   @override
   State<CreateCardPage> createState() => _CreateCardPageState();
 }
@@ -83,11 +81,11 @@ class _CreateCardPageState extends State<CreateCardPage> {
   Widget build(BuildContext context) {
     return  PopScope(
         canPop: false,
-        child: Scaffold(
+        child:Scaffold(
             appBar: AppBar(
                 title: const Text("Create Book"),
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   onPressed: (){
                     if(isEdited){
                       Dialogs.showConfirmDialog(context, "未保存, 是否直接退出?",onConfirm: (){
@@ -100,12 +98,14 @@ class _CreateCardPageState extends State<CreateCardPage> {
                   },
                 )
             ),
-            body:SingleChildScrollView(
-              child:Column(
+            body:Column(
                   children: [
-                    Row(children: [
-                      Text("Book Name"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                      const Text("Book Name"),
                       Container(
+                        width: 200,
                         // decoration: BoxDecoration(
                         //   border: BoxBorder(
                         //     borderSide: BorderSide(color: Colors.white),
@@ -115,11 +115,9 @@ class _CreateCardPageState extends State<CreateCardPage> {
                          controller: titleController,focusNode: titleNode,
                         ),
                       )
-
                     ],)
                   ]
               ),
-            )
         )
     );
   }
