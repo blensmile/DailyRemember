@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -10,61 +9,72 @@ class HomePage extends StatefulWidget {
 
 //create 3 home pages,
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   TabController? _tabController;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tabController = TabController(length: 2, vsync: this, );
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     _tabController?.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TabBarView(
-          controller: _tabController,
-          children: [
-            MyHomePage(title: "Home"),
-            MinePage(),
-          ]
+      body: SafeArea(
+        child: TabBarView(controller: _tabController, children: const [
+          MyHomePage(title: "Home"),
+          MinePage(),
+        ]),
       ),
-      bottomNavigationBar: BottomAppBar(
-          notchMargin :0,
+      bottomNavigationBar: Container(
           child: TabBar(
               controller: _tabController,
-              tabs: [
-                Tab(text: "Home",icon: Icon(Icons.home),iconMargin: EdgeInsets.all(1),),
-                Tab(text: "Mine",icon: Icon(Icons.account_box_outlined),iconMargin: EdgeInsets.all(1),),
-              ]
-          )
-      ),
+              indicatorColor: Colors.white,
+              tabs: const [
+            Tab(
+              text: "Home",
+              icon: Icon(Icons.home),
+              iconMargin: EdgeInsets.all(1),
+            ),
+            Tab(
+              text: "Mine",
+              icon: Icon(Icons.account_box_outlined),
+              iconMargin: EdgeInsets.all(1),
+            ),
+          ])),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
   final String title;
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Hello Cruel World!"),
+      child: const Text("Hello Cruel World!"),
     );
   }
 }
 
 class MinePage extends StatelessWidget {
-  const MinePage({Key? key}) : super(key: key);
+  const MinePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Hello Cruel World!"),
+      child: const Text("Hello Cruel World!"),
     );
   }
 }
