@@ -4,13 +4,11 @@ import 'package:daily_reminder/pages/init_pages.dart';
 import 'package:flutter/material.dart';
 
 
-
 Future<void> main() async {
   // 初始化数据库
   // await DBTools.initDatabase();
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

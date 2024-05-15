@@ -7,6 +7,7 @@ import 'home_page.dart';
 
 class InitPage extends StatelessWidget {
   const InitPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

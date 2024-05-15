@@ -185,6 +185,20 @@
 			path = Runner;
 			sourceTree = "<group>";
 		};
+		748A66C03AC40A9B00552DD6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D1C76623C70B2353483F4DD /* Pods-Runner.debug.xcconfig */,
+				BB10CA697E3ED05BA47679AC /* Pods-Runner.release.xcconfig */,
+				CBE59E5EF39C267F621AD55C /* Pods-Runner.profile.xcconfig */,
+				F02BFD71127D61923CF7FD38 /* Pods-RunnerTests.debug.xcconfig */,
+				6739B8C53F3DEED82182AA28 /* Pods-RunnerTests.release.xcconfig */,
+				C7DDA74310B5AA638E40C5C3 /* Pods-RunnerTests.profile.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D73912EC22F37F3D000D13A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +337,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1D10544798FC616DFE0FC13E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3399D490228B24CF009A79C7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;

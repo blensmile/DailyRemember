@@ -6,7 +6,6 @@ class RouteHelper  {
   static const String home = '/home';
   static const String mine = '/mine';
 
-
   //singleton to get instance
   RouteHelper._();
   static final RouteHelper _instance = RouteHelper._();
@@ -20,8 +19,7 @@ class RouteHelper  {
 
   //route with animation
   void routeTo(BuildContext context, Widget widget ){
-    // Navigator.push(context, CupertinoPageRoute(builder: (context) => widget));
-
+    Navigator.push(context, CupertinoPageRoute(builder: (context) => widget));
   }
 
   //route with animation
@@ -39,7 +37,7 @@ class RouteHelper  {
   }
 
   void pop(BuildContext context) {
-    Navigator.pop(context);
+    Navigator.of(context).pop();
   }
 
 }
