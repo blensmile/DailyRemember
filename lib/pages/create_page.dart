@@ -1,5 +1,6 @@
 
 import 'package:daily_reminder/tools/route_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../views/dialogs.dart';
@@ -53,8 +54,11 @@ class CreateCardPage extends StatefulWidget {
 class _CreateCardPageState extends State<CreateCardPage> {
 
   bool isEdited=false;
+  int buildTime=0;
+  bool isChangeable = true;
   late TextEditingController titleController, contentController, descriptionController;
   late FocusNode titleNode, contentNode,descriptionNode;
+  late TextStyle nameStyle,editStyle;
 
   @override
   void initState() {
@@ -65,6 +69,8 @@ class _CreateCardPageState extends State<CreateCardPage> {
     titleNode = FocusNode();
     contentNode = FocusNode();
     descriptionNode = FocusNode();
+    nameStyle = TextStyle(fontSize: 16,fontWeight: FontWeight.bold);
+    editStyle = TextStyle(fontSize: 16);
   }
 
   @override
@@ -79,11 +85,12 @@ class _CreateCardPageState extends State<CreateCardPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return  PopScope(
+    buildTime++;
+    return PopScope(
         canPop: false,
         child:Scaffold(
             appBar: AppBar(
-                title: const Text("Create Book"),
+                title: const Text("Create card"),
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back),
                   onPressed: (){
@@ -98,27 +105,63 @@ class _CreateCardPageState extends State<CreateCardPage> {
                   },
                 )
             ),
-            body:Column(
+            body:SingleChildScrollView(child:GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: (){
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                      const Text("Book Name"),
+                      Padding(padding:EdgeInsets.only(left:10,top: 5),
+                        child:Text("Card Name",style: nameStyle,),
+                      ),
                       Container(
-                        width: 200,
-                        // decoration: BoxDecoration(
-                        //   border: BoxBorder(
-                        //     borderSide: BorderSide(color: Colors.white),
-                        //   ),
-                        // ),
-                        child: TextField(
-                         controller: titleController,focusNode: titleNode,
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(10,),
+                        child: CupertinoTextField(
+                          controller: titleController,focusNode: titleNode,
+                          minLines: 1,
+                          maxLines: 2,
+                          style: editStyle,
                         ),
-                      )
-                    ],)
+                      ),
+                    Padding(padding:EdgeInsets.only(left:10,),child:Text('anser',style: nameStyle,),),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(10,),
+                      child:CupertinoTextField(
+                        controller: contentController,focusNode:contentNode,
+                        minLines: 2,
+                        maxLines: 4,
+                        style: editStyle,
+                      ),
+                    ),
+                    Padding(padding:EdgeInsets.only(left:10,),
+                      child:Text('expain',style: nameStyle,),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(10),
+                      child:CupertinoTextField(
+                        controller: descriptionController,focusNode: descriptionNode,
+                        minLines: 3,
+                        maxLines: 6,
+                        style: editStyle,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 10,),
+                        Text('可交换',style: nameStyle,),
+                        SizedBox(width: 20,),
+                        CupertinoSwitch(value: isChangeable, onChanged: (b){isChangeable=b;setState(() {
+                        });})
+                      ],),
                   ]
               ),
-        )
+        ),),),
     );
   }
 }

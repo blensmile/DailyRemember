@@ -73,32 +73,55 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: const Text("Hello Cruel World!"),
+        child: Center(child:  Text("Hello Cruel World!"),)
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // 获取+按钮的位置
-          RenderBox button = context.findRenderObject() as RenderBox;
-          Offset offset = button.localToGlobal(Offset.zero);
-
-          // 显示弹出菜单
-          _showPopupMenu(context,offset);
+          RouteHelper.instance.routeWithAnimation(context, const CreatBookPage());
         },
+        tooltip: 'Create',
         shape: const CircleBorder(),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child:const Icon(Icons.add),
+        // child:Add(),
       ),
     );
   }
+}
 
-  void _showPopupMenu(BuildContext context, Offset offset) {
-    showMenu(
+class Add extends StatelessWidget {
+  const Add({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        RenderBox button = context.findRenderObject() as RenderBox;
+        RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+        RelativeRect pos = RelativeRect.fromRect(
+          Rect.fromPoints(button.localToGlobal(Offset.zero,ancestor: overlay), button.localToGlobal(button.size.bottomRight(Offset.zero),ancestor: overlay),
+          ),Offset.zero&overlay.size,
+        );
+        // 显示弹出菜单
+        _showPopupMenu(context, pos);
+      },
+      child: const Icon(Icons.add),
+    );
+  }
+
+  void _showPopupMenu(BuildContext context, RelativeRect offset) {
+    showMenu<String>(
       context: context,
-      position: RelativeRect.fromLTRB(offset.dx, offset.dy, offset.dx, offset.dy),
+      position: offset,
       items: [
         PopupMenuItem(
           child: const Icon(Icons.book_outlined),
@@ -113,8 +136,11 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       ],
-    );
+    ).then((value){
+      print(value);
+    });
   }
+
 }
 
 class MinePage extends StatelessWidget {
